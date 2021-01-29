@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 #    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    BASKET_LINK = (By.CSS_SELECTOR, "[class='btn-group'] [class='btn btn-default']")
 
 class LoginPageLocators():
     LOGIN_FORM = (By.CSS_SELECTOR, "#login_form")
@@ -16,3 +17,7 @@ class ProductPageLocators():
     PRODUCT_NAME_ADDED = (By.CSS_SELECTOR, "[class='alert alert-safe alert-noicon alert-success  fade in']:nth-child(1) strong")
     MESSAGE_BASKET_PRICE = (By.CSS_SELECTOR, "[class='alert alert-safe alert-noicon alert-info  fade in']")
     BASKET_PRICE_IN_MESSAGE = (By.CSS_SELECTOR, "[class='alert alert-safe alert-noicon alert-info  fade in'] strong")
+
+class BasketPageLocators():
+    BASKET_EMPTY_MESSAGE = (By.CSS_SELECTOR, "#content_inner p")
+    BASKET_ITEMS = (By.CSS_SELECTOR, "[class='basket-items']")
