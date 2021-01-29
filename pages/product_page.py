@@ -31,3 +31,9 @@ class ProductPage(BasePage):
     
     def should_message_match_product_price(self, product_price, basket_price_in_message):
         assert product_price ==  basket_price_in_message, "Product price in basket price message doesn't match!"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_PRODUCT_ADDED), "Product added message is presented, but should not be!"
+
+    def should_success_message_dissapper(self):
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_PRODUCT_ADDED), "Product added message should dissappeare, but isn't!"
