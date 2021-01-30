@@ -21,7 +21,7 @@ class TestLoginFromMainPage():
         login_page.should_be_login_page()
 
 @pytest.mark.skip
-#Тест для проверки, что локатор BASKET_ITEMS в BasketPageLocators актуален - позитивный тест перед следующим негативным:
+# Тест для проверки, что локатор BASKET_ITEMS в BasketPageLocators актуален - позитивный тест перед следующим негативным:
 def test_guest_can_see_product_in_basket_after_adding_product(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
     page = ProductPage(browser, link)

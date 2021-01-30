@@ -4,6 +4,7 @@ from .pages.login_page import LoginPage
 import pytest
 import time
 
+@pytest.mark.need_review
 def test_guest_can_add_product_to_basket(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
     page = ProductPage(browser, link)
@@ -32,34 +33,7 @@ def test_guest_can_add_product_to_basket(browser, promo):
     product_price, basket_price_in_message = page.return_product_prices()
     page.should_message_match_product_price(product_price, basket_price_in_message)
 
-@pytest.mark.xfail
-def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
-    page = ProductPage(browser, link)
-    page.open()
-    page.click_add_basket_button()
-    page.should_not_be_success_message()
-
-def test_guest_cant_see_success_message(browser):
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
-    page = ProductPage(browser, link)
-    page.open()
-    page.should_not_be_success_message()
-
-@pytest.mark.xfail    
-def test_message_disappeared_after_adding_product_to_basket(browser):
-    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
-    page = ProductPage(browser, link)
-    page.open()
-    page.click_add_basket_button()
-    page.should_success_message_dissapper()
-
-def test_guest_should_see_login_link_on_product_page(browser):
-    link = "http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
-    page = ProductPage(browser, link)
-    page.open()
-    page.should_be_login_link()
-
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -67,7 +41,7 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
     page.go_to_login_page()
 
 @pytest.mark.skip
-#Тест для проверки, что локатор BASKET_ITEMS в BasketPageLocators актуален - позитивный тест перед следующим негативным:
+# Тест для проверки, что локатор BASKET_ITEMS в BasketPageLocators актуален - позитивный тест перед следующим негативным:
 def test_guest_can_see_product_in_basket_after_adding_product(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
     page = ProductPage(browser, link)
@@ -77,6 +51,7 @@ def test_guest_can_see_product_in_basket_after_adding_product(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_not_be_empty()
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
@@ -85,6 +60,34 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     basket_page = BasketPage(browser, browser.current_url)
     basket_page.should_be_empty()
     basket_page.should_be_basket_empty_message()
+
+def test_guest_cant_see_success_message(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_not_be_success_message()
+
+@pytest.mark.xfail
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
+    page = ProductPage(browser, link)
+    page.open()
+    page.click_add_basket_button()
+    page.should_not_be_success_message()
+
+def test_guest_should_see_login_link_on_product_page(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_be_login_link()
+
+@pytest.mark.xfail    
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207"
+    page = ProductPage(browser, link)
+    page.open()
+    page.click_add_basket_button()
+    page.should_success_message_dissapper()
 
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
@@ -101,7 +104,8 @@ class TestUserAddToBasketFromProductPage():
         page = ProductPage(browser, link)
         page.open()
         page.should_not_be_success_message()
-        
+    
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
         page = ProductPage(browser, link)
