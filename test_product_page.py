@@ -89,6 +89,7 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.click_add_basket_button()
     page.should_success_message_dissapper()
 
+
 class TestUserAddToBasketFromProductPage():
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, browser):

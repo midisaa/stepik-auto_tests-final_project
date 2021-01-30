@@ -2,6 +2,7 @@ from .base_page import BasePage
 from .locators import LoginPageLocators
 from .locators import MainPageLocators
 
+
 class LoginPage(BasePage):
     def register_new_user(self, browser, email, password):
         assert self.is_element_present(*LoginPageLocators.REGISTER_FORM_EMAIL), "Email field on register form is not presented!"

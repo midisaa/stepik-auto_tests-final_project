@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators
 import math
 
+
 class BasePage():
     def __init__(self, browser, url):
         self.browser = browser
