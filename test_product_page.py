@@ -20,7 +20,7 @@ def test_guest_can_add_product_to_basket(browser):
 
 @pytest.mark.skip
 @pytest.mark.parametrize('promo', [pytest.param(i, marks=pytest.mark.xfail(i==7, reason='Bugged_link!')) for i in range(10)])
-def test_guest_can_add_product_to_basket(browser, promo):
+def test_guest_can_add_product_to_basket_promo(browser, promo):
     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{promo}"
     page = ProductPage(browser, link)
     page.open()
